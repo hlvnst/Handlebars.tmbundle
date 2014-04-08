@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>pbyva@uryirafgrvwa.pbz</string>
+	<key>contactName</key>
+	<string>Colin Helvensteijn</string>
+	<key>description</key>
+	<string>Preliminary support for &lt;a href="http://handlebarsjs.com"&gt;Handlebars&lt;/a&gt;. Adapted for TextMate from the &lt;a href="https://github.com/daaain/Handlebars"&gt;Sublime Text package for Handlebars&lt;/a&gt; by &lt;a href="http://danieldemmel.me/"&gt;Daniel Demmel&lt;/a&gt;. Slightly modified to support template extending (i.e. &lt;code&gt;{{!&amp;lt; default}}&lt;/code&gt;).</string>
+	<key>name</key>
+	<string>Handlebars</string>
+	<key>uuid</key>
+	<string>1742F048-4F13-425D-A1A1-046AE315ECAB</string>
+</dict>
+</plist>

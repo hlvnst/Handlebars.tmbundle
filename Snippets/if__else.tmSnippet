@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>{{#if ${1:true}}}${2:$TM_SELECTED_TEXT}{{else}}${0}{{/if}}</string>
+	<key>name</key>
+	<string>if..else</string>
+	<key>scope</key>
+	<string>text.html.handlebars,text.html.basic source.js.embedded.html, text.html.twig source.js.embedded.html</string>
+	<key>tabTrigger</key>
+	<string>ifel</string>
+	<key>uuid</key>
+	<string>82D80916-1A9E-478A-B5FE-078B5091A7E9</string>
+</dict>
+</plist>

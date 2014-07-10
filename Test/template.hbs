@@ -13,9 +13,6 @@
 {{!< GhostStyleExtend}}
 {{log "Look at me!"}}
 
-{{! inline attributes }}
-<input type="checkbox" id="medication_taken" {{#if medication_taken}}checked{{/if}}>
-
 {{! TODO: advanced helper parameters }}
 {{customHelper "test1" "test2" 32 true object.value}}
 {{{link "See more..." href=story.url class="story"}}}
@@ -35,3 +32,13 @@
 {{! <!-- <h2 class="{{class}}">Test</h2> --> }}
 <!-- {{! <h2 class="{{class}}">Test</h2> }} -->
 {{/if}}
+
+{{! inline attributes }}
+<input type="checkbox" id="medication_taken" {{#if medication_taken}}checked{{/if}}>
+
+{{! Ember ArrayController implicit each loop }}
+<ul>
+  {{#each}}
+    <li>{{name}} by {{artist}}</li>
+  {{/each}}
+</ul>

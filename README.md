@@ -15,8 +15,8 @@ This [TextMate][] bundle adds preliminary support for [Handlebars][]. It has a (
 
 Clone this repository in the right place and make TextMate reload its bundles. For TextMate 2:
 
-    mkdir -p ~/Library/Application\ Support/Avian/Bundles
-    cd ~/Library/Application\ Support/Avian/Bundles
+    mkdir -p ~/Library/Application\ Support/Avian/Pristine\ Copy/Bundles
+    cd ~/Library/Application\ Support/Avian/Pristine\ Copy/Bundles
     git clone https://github.com/hlvnst/handlebars.tmbundle.git Handlebars.tmBundle
     osascript -e 'tell app "TextMate" to reload bundles'
 

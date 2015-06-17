@@ -6,16 +6,19 @@
 <p>'Thus spoke Zarathustra' – "ORLY?"</p>
 
 <div class="{{class}}{{#if shouldBeRed}} red{{/if}}">
-	Test
+	<custom-element>Test</custom-element>
+	<{{tag}} attr="asdf">asdf</{{tag}}>
 </div>
 
-{{> yayPartial}}
+{{> yayPartial customData='FoolBar'}}
 {{!< GhostStyleExtend}}
 {{log "Look at me!"}}
 
 {{! TODO: advanced helper parameters }}
-{{customHelper "test1" "test2" 32 true object.value}}
-{{{link "See more..." href=story.url class="story"}}}
+{{customHelper "test1" 'test2' 32 true object.value}}
+{{{link "See more..." href=story.url class="story" foo='bar'}}}
+{{customHelper 'test-single-quote-escaped\''}}
+{{customHelper "test-double-quote-escaped\""}}
 
 {{! TODO: array notation }}
 {{#each articles.[10].[#comments]}}
@@ -38,7 +41,12 @@
 
 {{! Ember ArrayController implicit each loop }}
 <ul>
-  {{#each}}
-    <li>{{name}} by {{artist}}</li>
-  {{/each}}
+	{{#each}}
+		<li>{{name}} by {{artist}}</li>
+	{{/each}}
 </ul>
+
+{{! with ... as }}
+{{#with foo as bar}}
+	<li>{{name}} by {{artist}}</li>
+{{/with}}

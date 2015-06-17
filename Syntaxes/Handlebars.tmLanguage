@@ -9,7 +9,11 @@
 		<string>hbr</string>
 		<string>hbrs</string>
 		<string>hbs</string>
+		<string>hdbs</string>
+		<string>hjs</string>
+		<string>mu</string>
 		<string>mustache</string>
+		<string>stache</string>
 		<string>template</string>
 		<string>tmpl</string>
 	</array>
@@ -36,6 +40,10 @@
 		<dict>
 			<key>include</key>
 			<string>#end_block</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#else_token</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -111,7 +119,7 @@
 		<key>block_helper</key>
 		<dict>
 			<key>begin</key>
-			<string>(\{\{~?\#)([-a-zA-Z0-9_\./]+)\s?+(@?[-a-zA-Z0-9_\./]+)*</string>
+			<string>(\{\{~?\#)([-a-zA-Z0-9_\./]+)\s?(@?[-a-zA-Z0-9_\./]+)*\s?(@?[-a-zA-Z0-9_\./]+)*\s?(@?[-a-zA-Z0-9_\./]+)*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -128,6 +136,21 @@
 				<dict>
 					<key>name</key>
 					<string>variable.parameter.handlebars</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.handlebars</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.handlebars</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.handlebars</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -146,11 +169,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#string-single-quoted</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string-double-quoted</string>
+					<string>#string</string>
 				</dict>
 			</array>
 		</dict>
@@ -160,7 +179,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\{\{![^&lt;]</string>
+					<string>\{\{!</string>
 					<key>end</key>
 					<string>\}\}</string>
 					<key>name</key>
@@ -205,6 +224,31 @@
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>else_token</key>
+		<dict>
+			<key>begin</key>
+			<string>(\{\{~?else)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.handlebars</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(~?\}\}\}*)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.handlebars</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function.inline.else.handlebars</string>
 		</dict>
 		<key>end_block</key>
 		<dict>
@@ -269,13 +313,27 @@
 				</dict>
 			</array>
 		</dict>
+		<key>escaped-double-quote</key>
+		<dict>
+			<key>match</key>
+			<string>\\"</string>
+			<key>name</key>
+			<string>constant.character.escape.js</string>
+		</dict>
+		<key>escaped-single-quote</key>
+		<dict>
+			<key>match</key>
+			<string>\\'</string>
+			<key>name</key>
+			<string>constant.character.escape.js</string>
+		</dict>
 		<key>html_tags</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(&lt;)([a-zA-Z0-9:]+)(?=[^&gt;]*&gt;&lt;/\2&gt;)</string>
+					<string>(&lt;)([a-zA-Z0-9:-]+)(?=[^&gt;]*&gt;&lt;/\2&gt;)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -352,11 +410,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#string-double-quoted</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#string-single-quoted</string>
+							<string>#string</string>
 						</dict>
 					</array>
 				</dict>
@@ -675,7 +729,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(&lt;/?)([a-zA-Z0-9:]+)</string>
+					<string>(&lt;/?)([a-zA-Z0-9:-]+)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -693,6 +747,34 @@
 					<string>(&gt;)</string>
 					<key>name</key>
 					<string>meta.tag.other.html</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tag-stuff</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(&lt;/?)([a-zA-Z0-9:-{}]+)</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.tag.html</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.tag.tokenised.html</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(&gt;)</string>
+					<key>name</key>
+					<string>meta.tag.tokenised.html</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -802,6 +884,10 @@
 						</dict>
 						<dict>
 							<key>include</key>
+							<string>#else_token</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#partial_and_var</string>
 						</dict>
 						<dict>
@@ -849,6 +935,16 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#string</string>
+				</dict>
+			</array>
+		</dict>
+		<key>string</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
 					<string>#string-single-quoted</string>
 				</dict>
 				<dict>
@@ -883,6 +979,10 @@
 			<string>string.quoted.double.handlebars</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#escaped-double-quote</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#block_comments</string>
@@ -933,6 +1033,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#escaped-single-quote</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#block_comments</string>
 				</dict>
 				<dict>
@@ -967,11 +1071,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#string-double-quoted</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string-single-quoted</string>
+					<string>#string</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -988,6 +1088,10 @@
 				<dict>
 					<key>include</key>
 					<string>#end_block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#else_token</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1020,11 +1124,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#string-single-quoted</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string-double-quoted</string>
+					<string>#string</string>
 				</dict>
 			</array>
 		</dict>
@@ -1053,11 +1153,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#string-single-quoted</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string-double-quoted</string>
+					<string>#string</string>
 				</dict>
 			</array>
 		</dict>

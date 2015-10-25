@@ -18,7 +18,6 @@ Clone this repository in the right place and make TextMate reload its bundles. F
     mkdir -p ~/Library/Application\ Support/Avian/Pristine\ Copy/Bundles
     cd ~/Library/Application\ Support/Avian/Pristine\ Copy/Bundles
     git clone https://github.com/hlvnst/handlebars.tmbundle.git Handlebars.tmBundle
-    osascript -e 'tell app "TextMate" to reload bundles'
 
 For TextMate 1.x, change `Avian` to `TextMate` in the first two lines.
 

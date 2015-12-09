@@ -13,6 +13,7 @@
 		<string>hjs</string>
 		<string>mu</string>
 		<string>mustache</string>
+		<string>rac</string>
 		<string>stache</string>
 		<string>template</string>
 		<string>tmpl</string>
@@ -757,7 +758,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(&lt;/?)([a-zA-Z0-9:-{}]+)</string>
+					<string>(&lt;/?)([a-zA-Z0-9{}:-]+)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -804,7 +805,7 @@
 		<key>inline_script</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^\s+)?(&lt;)((?i:script))\b(?:.*(type)=(["'](?:text/x-handlebars-template|text/x-handlebars|text/template)["']))(?![^&gt;]*/&gt;)</string>
+			<string>(?:^\s+)?(&lt;)((?i:script))\b(?:.*(type)=(["'](?:text/x-handlebars-template|text/x-handlebars|text/template|x-tmpl-handlebars)["']))(?![^&gt;]*/&gt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -997,6 +998,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#else_token</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#end_block</string>
 				</dict>
 				<dict>
@@ -1046,6 +1051,10 @@
 				<dict>
 					<key>include</key>
 					<string>#block_helper</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#else_token</string>
 				</dict>
 				<dict>
 					<key>include</key>

@@ -22,7 +22,7 @@ Clone this repository in the right place and make TextMate reload its bundles. F
 For TextMate 1.x, change `Avian` to `TextMate` in the first two lines.
 
 ## Known issue
-* The language definition is incomplete. See the `Test/template.hbs` file inside the bundle for TODO's.
+* The language definition is incomplete. See the `Test/template.hbs` file inside the bundle for `TODO`'s and `FIXME`'s.
 
 ## Contributing
 Pull requests are welcome!
